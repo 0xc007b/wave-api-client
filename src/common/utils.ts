@@ -23,12 +23,12 @@ export function isValidApiKey(apiKey: string): boolean {
 export function formatAmount(amount: number | string, currency: string): string {
   // Convert to string if it's a number
   const amountStr = typeof amount === 'number' ? amount.toString() : amount;
-  
+
   // Validate that the amount string only contains digits and optionally a decimal point
   if (!/^\d+(\.\d+)?$/.test(amountStr)) {
     throw new Error(`Invalid amount format: ${amount}`);
   }
-  
+
   // Return the amount as a string (API expects string values for amounts)
   return amountStr;
 }
@@ -38,13 +38,13 @@ export function formatAmount(amount: number | string, currency: string): string 
  */
 export function createQueryString(params: Record<string, any>): string {
   const searchParams = new URLSearchParams();
-  
+
   Object.entries(params).forEach(([key, value]) => {
     if (value !== null && value !== undefined) {
       searchParams.append(key, String(value));
     }
   });
-  
+
   const queryString = searchParams.toString();
   return queryString ? `?${queryString}` : '';
 }

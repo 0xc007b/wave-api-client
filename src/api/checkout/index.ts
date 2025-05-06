@@ -1,6 +1,5 @@
 import { HttpClient } from '../../http/client';
 import { ENDPOINTS } from '../../common/constants';
-import { Currency } from '../../common/types';
 import { formatAmount } from '../../common/utils';
 import { CreateCheckoutSessionRequest, CheckoutSession } from './types';
 
@@ -16,7 +15,7 @@ export class CheckoutApi {
 
   /**
    * Creates a new checkout session
-   * 
+   *
    * @param options Checkout session options
    * @returns The created checkout session
    */
@@ -43,13 +42,65 @@ export class CheckoutApi {
 
   /**
    * Retrieves a checkout session by ID
-   * 
+   *
    * @param sessionId The ID of the checkout session to retrieve
    * @returns The checkout session
    */
   async getSession(sessionId: string): Promise<CheckoutSession> {
     if (!sessionId) throw new Error('sessionId is required');
-    
+
     return this.httpClient.get<CheckoutSession>(`${ENDPOINTS.CHECKOUT_SESSIONS}/${sessionId}`);
+  }
+
+  /**
+   * Retrieves a checkout session by transaction ID
+   *
+   * @param transactionId The transaction ID associated with the checkout session
+   * @returns The checkout session
+   */
+  async getSessionByTransactionId(transactionId: string): Promise<CheckoutSession> {
+    if (!transactionId) throw new Error('transactionId is required');
+
+    return this.httpClient.get<CheckoutSession>(
+      `${ENDPOINTS.CHECKOUT_SESSIONS}?transaction_id=${transactionId}`,
+    );
+  }
+
+  /**
+   * Searches for checkout sessions by client reference
+   *
+   * @param clientReference The client reference to search for
+   * @returns An array of matching checkout sessions
+   */
+  async searchSessions(clientReference: string): Promise<{ result: CheckoutSession[] }> {
+    if (!clientReference) throw new Error('clientReference is required');
+
+    return this.httpClient.get<{ result: CheckoutSession[] }>(
+      `${ENDPOINTS.CHECKOUT_SESSIONS}/search?client_reference=${clientReference}`,
+    );
+  }
+
+  /**
+   * Refunds a checkout session
+   *
+   * @param sessionId The ID of the checkout session to refund
+   * @returns An empty response upon success
+   */
+  async refundSession(sessionId: string): Promise<void> {
+    if (!sessionId) throw new Error('sessionId is required');
+
+    return this.httpClient.post<void>(`${ENDPOINTS.CHECKOUT_SESSIONS}/${sessionId}/refund`);
+  }
+
+  /**
+   * Expires an open checkout session
+   *
+   * @param sessionId The ID of the checkout session to expire
+   * @returns An empty response upon success
+   */
+  async expireSession(sessionId: string): Promise<void> {
+    if (!sessionId) throw new Error('sessionId is required');
+
+    return this.httpClient.post<void>(`${ENDPOINTS.CHECKOUT_SESSIONS}/${sessionId}/expire`);
   }
 }

@@ -6,10 +6,10 @@ import { ApiErrorResponse } from './types';
 export class WaveApiError extends Error {
   /** HTTP status code */
   statusCode: number;
-  
+
   /** Error code from the API */
   code: string;
-  
+
   /** Detailed error information */
   details?: any;
 
@@ -19,7 +19,7 @@ export class WaveApiError extends Error {
     this.statusCode = statusCode;
     this.code = code;
     this.details = details;
-    
+
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, this.constructor);
@@ -34,7 +34,7 @@ export class WaveApiError extends Error {
       errorResponse.message,
       statusCode,
       errorResponse.code,
-      errorResponse.details
+      errorResponse.details,
     );
   }
 }
@@ -96,10 +96,17 @@ export class ServerError extends WaveApiError {
 /**
  * Factory to create the appropriate error based on status code
  */
-export function createErrorFromResponse(statusCode: number, errorResponse: ApiErrorResponse): WaveApiError {
+export function createErrorFromResponse(
+  statusCode: number,
+  errorResponse: ApiErrorResponse,
+): WaveApiError {
   switch (statusCode) {
     case 401:
-      return new AuthenticationError(errorResponse.message, errorResponse.code, errorResponse.details);
+      return new AuthenticationError(
+        errorResponse.message,
+        errorResponse.code,
+        errorResponse.details,
+      );
     case 403:
       return new PermissionError(errorResponse.message, errorResponse.code, errorResponse.details);
     case 404:

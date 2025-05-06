@@ -58,7 +58,7 @@ export class HttpClient {
             data: error.response?.data,
           });
           return Promise.reject(error);
-        }
+        },
       );
     }
   }
@@ -70,7 +70,7 @@ export class HttpClient {
     method: HttpMethod,
     path: string,
     data?: any,
-    config?: Partial<AxiosRequestConfig>
+    config?: Partial<AxiosRequestConfig>,
   ): Promise<T> {
     try {
       const response: AxiosResponse<T> = await this.client.request({
@@ -87,7 +87,7 @@ export class HttpClient {
         const { status, data } = error.response;
         throw createErrorFromResponse(status, data as ApiErrorResponse);
       }
-      
+
       // Re-throw other errors
       throw error;
     }
@@ -96,7 +96,11 @@ export class HttpClient {
   /**
    * Makes a GET request
    */
-  get<T>(path: string, params?: Record<string, any>, config?: Partial<AxiosRequestConfig>): Promise<T> {
+  get<T>(
+    path: string,
+    params?: Record<string, any>,
+    config?: Partial<AxiosRequestConfig>,
+  ): Promise<T> {
     return this.request<T>(HttpMethod.GET, path, params, config);
   }
 

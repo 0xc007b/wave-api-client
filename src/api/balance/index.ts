@@ -1,8 +1,7 @@
 import { HttpClient } from '../../http/client';
 import { ENDPOINTS } from '../../common/constants';
-import { PaginationParams } from '../../common/types';
 import { createQueryString } from '../../common/utils';
-import { Balance, Transaction, TransactionListParams } from './types';
+import { Balance, BalanceParams, TransactionListParams, TransactionListResponse } from './types';
 
 /**
  * Balance & Reconciliation API client
@@ -16,43 +15,35 @@ export class BalanceApi {
 
   /**
    * Gets the current balance of the wallet
-   * 
+   *
+   * @param params Optional parameters
    * @returns The current balance information
    */
-  async getBalance(): Promise<Balance> {
-    return this.httpClient.get<Balance>(ENDPOINTS.BALANCE);
+  async getBalance(params?: BalanceParams): Promise<Balance> {
+    const queryParams = params ? createQueryString(params) : '';
+    return this.httpClient.get<Balance>(`${ENDPOINTS.BALANCE}${queryParams}`);
   }
 
   /**
-   * Lists transactions for the wallet
-   * 
+   * Lists transactions for the wallet for a given day
+   *
    * @param params Optional parameters for filtering transactions
    * @returns A paginated list of transactions
    */
-  async listTransactions(params?: TransactionListParams): Promise<{
-    data: Transaction[];
-    cursor?: string;
-    has_more: boolean;
-  }> {
-    const queryString = params ? createQueryString(params) : '';
-    return this.httpClient.get<{
-      data: Transaction[];
-      cursor?: string;
-      has_more: boolean;
-    }>(`${ENDPOINTS.TRANSACTIONS}${queryString}`);
+  async listTransactions(params?: TransactionListParams): Promise<TransactionListResponse> {
+    const queryParams = params ? createQueryString(params) : '';
+    return this.httpClient.get<TransactionListResponse>(`${ENDPOINTS.TRANSACTIONS}${queryParams}`);
   }
 
   /**
-   * Gets a single transaction by ID
-   * 
-   * @param transactionId ID of the transaction to retrieve
-   * @returns The transaction details
+   * Refunds a transaction
+   *
+   * @param transactionId ID of the transaction to refund
+   * @returns No content on success
    */
-  async getTransaction(transactionId: string): Promise<Transaction> {
+  async refundTransaction(transactionId: string): Promise<void> {
     if (!transactionId) throw new Error('transactionId is required');
-    
-    return this.httpClient.get<Transaction>(
-      `${ENDPOINTS.TRANSACTIONS}/${transactionId}`
-    );
+
+    return this.httpClient.post<void>(`${ENDPOINTS.TRANSACTIONS}/${transactionId}/refund`, {});
   }
 }

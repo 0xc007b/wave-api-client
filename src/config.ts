@@ -10,7 +10,7 @@ export function validateConfig(config: WaveApiConfig): WaveApiConfig {
   if (isEmpty(config.apiKey)) {
     throw new Error('API key is required');
   }
-  
+
   if (!isValidApiKey(config.apiKey)) {
     throw new Error('Invalid API key format');
   }

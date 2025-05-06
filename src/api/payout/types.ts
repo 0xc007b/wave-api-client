@@ -1,81 +1,100 @@
 import { Currency } from '../../common/types';
 
 /**
- * Status of a payout
+ * Status of a payout as defined in the Wave API
  */
 export enum PayoutStatus {
-  PENDING = 'pending',
   PROCESSING = 'processing',
-  COMPLETED = 'completed',
+  SUCCEEDED = 'succeeded',
   FAILED = 'failed',
-  CANCELLED = 'cancelled',
+  REVERSED = 'reversed',
+}
+
+/**
+ * Payout error details as defined in the Wave API
+ */
+export interface PayoutError {
+  /** Error code */
+  error_code: string;
+
+  /** Human-readable error message */
+  error_message?: string;
 }
 
 /**
  * Parameters for creating a new payout
  */
 export interface CreatePayoutRequest {
-  /** Amount to be paid out */
-  amount: string | number;
-  
-  /** Currency for the amount */
+  /** The amount currency */
   currency: Currency;
-  
-  /** Mobile number of the recipient */
+
+  /** The amount to be paid out to the recipient, net of fees */
+  receive_amount: string | number;
+
+  /** The recipient mobile phone number */
   mobile: string;
-  
-  /** Name of the recipient */
-  recipient_name?: string;
-  
-  /** Client-provided ID to avoid duplicate payouts */
-  idempotency_key?: string;
-  
-  /** Optional metadata to attach to the payout */
-  metadata?: Record<string, string>;
+
+  /** The recipient name, may be used for user verification */
+  name?: string;
+
+  /** An optional field to save the recipient's national ID */
+  national_id?: string;
+
+  /** An optional message with a payment reason shown to customers */
+  payment_reason?: string;
+
+  /** A unique string that you provide to correlate the payout in your system */
+  client_reference?: string;
+
+  /** The id of an aggregated merchant identity to use for this payout */
+  aggregated_merchant_id?: string;
 }
 
 /**
  * Payout response
  */
 export interface Payout {
-  /** Unique identifier for the payout */
+  /** A unique identifier for the payout object */
   id: string;
-  
-  /** Amount of the payout */
-  amount: string;
-  
-  /** Fee amount (if applicable) */
-  fee?: string;
-  
-  /** Currency for the amount */
+
+  /** The amount currency */
   currency: Currency;
-  
-  /** Mobile number of the recipient */
+
+  /** The amount to be paid out to the recipient, net of fees */
+  receive_amount: string;
+
+  /** The fee for sending the payout */
+  fee: string;
+
+  /** The recipient mobile phone number */
   mobile: string;
-  
-  /** Name of the recipient */
-  recipient_name?: string;
-  
-  /** Status of the payout */
+
+  /** The recipient name */
+  name?: string;
+
+  /** An optional field to save the recipient's national ID */
+  national_id?: string;
+
+  /** A unique string that you provide to correlate the payout in your system */
+  client_reference?: string;
+
+  /** An optional message with a payment reason shown to customers */
+  payment_reason?: string;
+
+  /** The status of the payout */
   status: PayoutStatus;
-  
-  /** Client-provided ID to avoid duplicate payouts */
-  idempotency_key?: string;
-  
+
+  /** Details about the reason for a failed payout */
+  payout_error?: PayoutError;
+
+  /** The time and date that this payout request was recorded */
+  timestamp: string;
+
+  /** The id of an aggregated merchant identity used for this payout */
+  aggregated_merchant_id?: string;
+
   /** ID of the batch this payout belongs to (if applicable) */
   batch_id?: string;
-  
-  /** Optional metadata attached to the payout */
-  metadata?: Record<string, string>;
-  
-  /** Time when the payout was created */
-  created_at: string;
-  
-  /** Time when the payout was last updated */
-  updated_at: string;
-  
-  /** Time when the payout was completed (if applicable) */
-  completed_at?: string;
 }
 
 /**
@@ -84,34 +103,41 @@ export interface Payout {
 export interface CreatePayoutBatchRequest {
   /** Array of payouts to create */
   payouts: Array<{
-    /** Amount to be paid out */
-    amount: string | number;
-    
-    /** Currency for the amount */
+    /** The amount currency */
     currency: Currency;
-    
-    /** Mobile number of the recipient */
+
+    /** The amount to be paid out to the recipient, net of fees */
+    receive_amount: string | number;
+
+    /** The recipient mobile phone number */
     mobile: string;
-    
-    /** Name of the recipient */
-    recipient_name?: string;
-    
-    /** Optional metadata to attach to the payout */
-    metadata?: Record<string, string>;
+
+    /** The recipient name, may be used for user verification */
+    name?: string;
+
+    /** An optional field to save the recipient's national ID */
+    national_id?: string;
+
+    /** An optional message with a payment reason shown to customers */
+    payment_reason?: string;
+
+    /** A unique string that you provide to correlate the payout in your system */
+    client_reference?: string;
+
+    /** The id of an aggregated merchant identity to use for this payout */
+    aggregated_merchant_id?: string;
   }>;
-  
+
   /** Client-provided ID to avoid duplicate batches */
   idempotency_key?: string;
 }
 
 /**
- * Status of a payout batch
+ * Status of a payout batch as defined in the Wave API
  */
 export enum PayoutBatchStatus {
   PROCESSING = 'processing',
-  COMPLETED = 'completed',
-  PARTIALLY_COMPLETED = 'partially_completed',
-  FAILED = 'failed',
+  COMPLETE = 'complete',
 }
 
 /**
@@ -120,28 +146,10 @@ export enum PayoutBatchStatus {
 export interface PayoutBatch {
   /** Unique identifier for the batch */
   id: string;
-  
+
   /** Status of the batch */
   status: PayoutBatchStatus;
-  
-  /** Client-provided ID to avoid duplicate batches */
-  idempotency_key?: string;
-  
-  /** IDs of payouts in this batch */
-  payout_ids: string[];
-  
-  /** Count of payouts with status 'completed' */
-  completed_count: number;
-  
-  /** Count of payouts with status 'failed' */
-  failed_count: number;
-  
-  /** Count of payouts with status 'pending' or 'processing' */
-  pending_count: number;
-  
-  /** Time when the batch was created */
-  created_at: string;
-  
-  /** Time when the batch was last updated */
-  updated_at: string;
+
+  /** Array of payout objects in this batch */
+  payouts: Payout[];
 }

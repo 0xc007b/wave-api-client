@@ -15,7 +15,7 @@ export class MerchantsApi {
 
   /**
    * Lists merchants
-   * 
+   *
    * @param params Optional parameters for filtering merchants
    * @returns A paginated list of merchants
    */
@@ -34,15 +34,13 @@ export class MerchantsApi {
 
   /**
    * Gets a merchant by ID
-   * 
+   *
    * @param merchantId ID of the merchant to retrieve
    * @returns The merchant details
    */
   async getMerchant(merchantId: string): Promise<MerchantDetails> {
     if (!merchantId) throw new Error('merchantId is required');
-    
-    return this.httpClient.get<MerchantDetails>(
-      `${ENDPOINTS.MERCHANTS}/${merchantId}`
-    );
+
+    return this.httpClient.get<MerchantDetails>(`${ENDPOINTS.MERCHANTS}/${merchantId}`);
   }
 }

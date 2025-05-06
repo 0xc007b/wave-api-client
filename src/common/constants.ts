@@ -15,6 +15,8 @@ export const API_VERSION = 'v1';
 export const HEADERS = {
   AUTHORIZATION: 'Authorization',
   CONTENT_TYPE: 'Content-Type',
+  IDEMPOTENCY_KEY: 'Idempotency-Key',
+  WAVE_SIGNATURE: 'Wave-Signature',
 };
 
 /** Content types */
@@ -27,16 +29,18 @@ export const ENDPOINTS = {
   // Balance & Reconciliation API
   BALANCE: `/${API_VERSION}/balance`,
   TRANSACTIONS: `/${API_VERSION}/transactions`,
-  
+
   // Checkout API
   CHECKOUT_SESSIONS: `/${API_VERSION}/checkout/sessions`,
-  
+
   // Payout API
-  PAYOUTS: `/${API_VERSION}/payouts`,
-  
+  PAYOUT: `/${API_VERSION}/payout`,
+  PAYOUTS_SEARCH: `/${API_VERSION}/payouts/search`,
+  PAYOUT_BATCH: `/${API_VERSION}/payout-batch`,
+
   // Aggregated Merchants API
-  MERCHANTS: `/${API_VERSION}/merchants`,
-  
+  AGGREGATED_MERCHANTS: `/${API_VERSION}/aggregated_merchants`,
+
   // Webhooks
   WEBHOOKS: `/${API_VERSION}/webhooks`,
 };

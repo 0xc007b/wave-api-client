@@ -16,16 +16,16 @@ export class WaveClient {
 
   /** Balance & Reconciliation API */
   public readonly balance: BalanceApi;
-  
+
   /** Checkout API */
   public readonly checkout: CheckoutApi;
-  
+
   /** Payout API */
   public readonly payout: PayoutApi;
-  
+
   /** Aggregated Merchants API */
   public readonly merchants: MerchantsApi;
-  
+
   /** Webhooks API */
   public readonly webhooks: WebhooksApi;
 
