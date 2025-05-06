@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Built files
+dist/
+
+# Coverage
+coverage/
+
+# Documentation
+docs/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac
+.DS_Store
+
+# Misc
+.tmp/
+.cache/
