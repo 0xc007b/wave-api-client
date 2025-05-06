@@ -1,6 +1,6 @@
 {
   "name": "wave-api-client",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "TypeScript client for Wave API (African fintech platform)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
