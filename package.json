@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/0xc007b/wave-api-client/issues"
   },
-  "homepage": "https://github.com/0xc007b/wave-api-client#readme",
+  "homepage": "https://0xc007b.github.io/wave-api-client",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",

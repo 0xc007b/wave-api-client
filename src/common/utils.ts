@@ -14,7 +14,7 @@ export function isEmpty(value: string | null | undefined): boolean {
  */
 export function isValidApiKey(apiKey: string): boolean {
   // Wave API keys start with wave_* and are sufficiently long
-  return /^wave_[a-zA-Z0-9_]{20,}$/.test(apiKey);
+  return /^wave_[a-zA-Z0-9_-]{20,}$/.test(apiKey);
 }
 
 /**
