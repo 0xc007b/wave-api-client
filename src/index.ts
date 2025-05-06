@@ -6,7 +6,26 @@ export * from './api/balance/types';
 export * from './api/checkout/types';
 export * from './api/payout/types';
 export * from './api/merchants/types';
-export * from './api/webhooks/types';
+
+// Webhook types - export with care to avoid naming conflicts
+export {
+  WebhookEvent,
+  WebhookSecurityStrategy,
+  WebhookStatus,
+  WebhookListParams,
+  CreateWebhookRequest,
+  UpdateWebhookRequest,
+  Webhook,
+  VerifySignatureSecretParams,
+  VerifySharedSecretParams,
+  WebhookLastPaymentError,
+  CheckoutSessionCompletedEventData,
+  CheckoutSessionPaymentFailedEventData,
+  MerchantPaymentReceivedEventData,
+  B2BPaymentReceivedEventData,
+  B2BPaymentFailedEventData,
+  WebhookEventPayload,
+} from './api/webhooks/types';
 
 // Export common types
 export { Currency, WaveApiConfig, ErrorCode } from './common/types';

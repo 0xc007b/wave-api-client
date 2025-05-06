@@ -132,7 +132,7 @@ export interface VerifySharedSecretParams {
 /**
  * Last payment error structure (for checkout.session.payment_failed events)
  */
-export interface LastPaymentError {
+export interface WebhookLastPaymentError {
   /** Error code */
   code: string;
 
@@ -172,7 +172,7 @@ export interface CheckoutSessionPaymentFailedEventData {
   client_reference: string | null;
   currency: string;
   error_url: string;
-  last_payment_error: LastPaymentError;
+  last_payment_error: WebhookLastPaymentError;
   business_name: string;
   payment_status: string;
   success_url: string;
@@ -215,7 +215,7 @@ export interface B2BPaymentFailedEventData {
   amount: string;
   client_reference?: string;
   currency: string;
-  last_payment_error: LastPaymentError;
+  last_payment_error: WebhookLastPaymentError;
   sender_id: string;
   when_created: string;
 }
@@ -223,12 +223,12 @@ export interface B2BPaymentFailedEventData {
 /**
  * Base webhook event structure
  */
-export interface WebhookEvent<T = unknown> {
+export interface WebhookEventPayload<T = unknown> {
   /** Unique identifier for the event */
   id: string;
 
   /** The type of event */
-  type: WebhookEvent;
+  type: string;
 
   /** The event data */
   data: T;

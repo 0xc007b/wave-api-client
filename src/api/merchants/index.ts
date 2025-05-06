@@ -29,7 +29,7 @@ export class MerchantsApi {
       data: MerchantDetails[];
       cursor?: string;
       has_more: boolean;
-    }>(`${ENDPOINTS.MERCHANTS}${queryString}`);
+    }>(`${ENDPOINTS.AGGREGATED_MERCHANTS}${queryString}`);
   }
 
   /**
@@ -41,6 +41,6 @@ export class MerchantsApi {
   async getMerchant(merchantId: string): Promise<MerchantDetails> {
     if (!merchantId) throw new Error('merchantId is required');
 
-    return this.httpClient.get<MerchantDetails>(`${ENDPOINTS.MERCHANTS}/${merchantId}`);
+    return this.httpClient.get<MerchantDetails>(`${ENDPOINTS.AGGREGATED_MERCHANTS}/${merchantId}`);
   }
 }
