@@ -8,7 +8,7 @@ dist/
 coverage/
 
 # Documentation
-docs/
+#docs/
 
 # Environment variables
 .env
