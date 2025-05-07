@@ -2,6 +2,7 @@ import { PaginationParams } from '../../common/types';
 
 /**
  * Webhook event types as defined in the Wave API documentation
+ * @deprecated This enum is being deprecated and will be removed in a future version
  */
 export enum WebhookEvent {
   CHECKOUT_SESSION_COMPLETED = 'checkout.session.completed',
@@ -13,6 +14,7 @@ export enum WebhookEvent {
 
 /**
  * Security strategy for webhook verification
+ * @deprecated This enum is being deprecated and will be removed in a future version
  */
 export enum WebhookSecurityStrategy {
   SHARED_SECRET = 'shared_secret',
@@ -21,6 +23,7 @@ export enum WebhookSecurityStrategy {
 
 /**
  * Webhook status
+ * @deprecated This enum is being deprecated and will be removed in a future version
  */
 export enum WebhookStatus {
   ACTIVE = 'active',
@@ -29,6 +32,7 @@ export enum WebhookStatus {
 
 /**
  * Parameters for listing webhooks
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface WebhookListParams extends PaginationParams {
   /** Filter by event type */
@@ -40,6 +44,7 @@ export interface WebhookListParams extends PaginationParams {
 
 /**
  * Parameters for creating a webhook
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface CreateWebhookRequest {
   /** URL where webhook events will be sent */
@@ -57,6 +62,7 @@ export interface CreateWebhookRequest {
 
 /**
  * Parameters for updating a webhook
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface UpdateWebhookRequest {
   /** URL where webhook events will be sent */
@@ -74,6 +80,7 @@ export interface UpdateWebhookRequest {
 
 /**
  * Webhook details
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface Webhook {
   /** Unique identifier for the webhook */
@@ -106,6 +113,7 @@ export interface Webhook {
 
 /**
  * Parameters for verifying a webhook signature
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface VerifySignatureSecretParams {
   /** The raw request payload (usually JSON string) */
@@ -120,6 +128,7 @@ export interface VerifySignatureSecretParams {
 
 /**
  * Parameters for verifying a shared secret
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface VerifySharedSecretParams {
   /** Authorization header from the webhook request */
@@ -131,6 +140,7 @@ export interface VerifySharedSecretParams {
 
 /**
  * Last payment error structure (for checkout.session.payment_failed events)
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface WebhookLastPaymentError {
   /** Error code */
@@ -142,6 +152,7 @@ export interface WebhookLastPaymentError {
 
 /**
  * Checkout session completed event data
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface CheckoutSessionCompletedEventData {
   id: string;
@@ -164,6 +175,7 @@ export interface CheckoutSessionCompletedEventData {
 
 /**
  * Checkout session payment failed event data
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface CheckoutSessionPaymentFailedEventData {
   id: string;
@@ -183,6 +195,7 @@ export interface CheckoutSessionPaymentFailedEventData {
 
 /**
  * Merchant payment received event data
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface MerchantPaymentReceivedEventData {
   id: string;
@@ -197,6 +210,7 @@ export interface MerchantPaymentReceivedEventData {
 
 /**
  * B2B payment received event data
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface B2BPaymentReceivedEventData {
   id: string;
@@ -209,6 +223,7 @@ export interface B2BPaymentReceivedEventData {
 
 /**
  * B2B payment failed event data
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface B2BPaymentFailedEventData {
   id: string;
@@ -222,6 +237,7 @@ export interface B2BPaymentFailedEventData {
 
 /**
  * Base webhook event structure
+ * @deprecated This interface is being deprecated and will be removed in a future version
  */
 export interface WebhookEventPayload<T = unknown> {
   /** Unique identifier for the event */

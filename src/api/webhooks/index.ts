@@ -13,17 +13,20 @@ import * as crypto from 'crypto';
 
 /**
  * Webhooks API client
+ * @deprecated This API is being deprecated and will be removed in a future version
  */
 export class WebhooksApi {
   private httpClient: HttpClient;
 
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
+    console.warn('WebhooksApi is deprecated and will be removed in a future version');
   }
 
   /**
    * Lists webhooks
-   *
+   * 
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param params Optional parameters for filtering webhooks
    * @returns A paginated list of webhooks
    */
@@ -47,6 +50,7 @@ export class WebhooksApi {
   /**
    * Creates a new webhook
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param options Webhook creation options
    * @returns The created webhook
    */
@@ -71,6 +75,7 @@ export class WebhooksApi {
   /**
    * Gets a webhook by ID
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param webhookId ID of the webhook to retrieve
    * @returns The webhook details
    */
@@ -83,6 +88,7 @@ export class WebhooksApi {
   /**
    * Updates a webhook
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param webhookId ID of the webhook to update
    * @param options Webhook update options
    * @returns The updated webhook
@@ -96,6 +102,7 @@ export class WebhooksApi {
   /**
    * Deletes a webhook
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param webhookId ID of the webhook to delete
    * @returns Confirmation of deletion
    */
@@ -108,6 +115,7 @@ export class WebhooksApi {
   /**
    * Verifies a webhook signature
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param params Parameters for verification
    * @returns Whether the signature is valid
    */
@@ -143,6 +151,7 @@ export class WebhooksApi {
   /**
    * Verifies a shared secret from Authorization header
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param params Parameters for verification
    * @returns Whether the shared secret is valid
    */
@@ -167,6 +176,7 @@ export class WebhooksApi {
   /**
    * Sends a test event to a webhook endpoint
    *
+   * @deprecated This method is being deprecated and will be removed in a future version
    * @param webhookId ID of the webhook to test
    * @returns Confirmation of the test event being sent
    */

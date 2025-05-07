@@ -8,6 +8,7 @@ export * from './api/payout/types';
 export * from './api/merchants/types';
 
 // Webhook types - export with care to avoid naming conflicts
+// @deprecated All webhook types are being deprecated and will be removed in a future version
 export {
   WebhookEvent,
   WebhookSecurityStrategy,

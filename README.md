@@ -53,6 +53,12 @@ async function getBalance() {
 
 The client provides access to the following Wave APIs:
 
+- Balance & Reconciliation API
+- Checkout API
+- Payout API
+- Merchants API
+- Webhooks API ⚠️ (Deprecated and will be removed in a future version)
+
 ### Balance & Reconciliation API
 
 ```typescript
@@ -174,7 +180,9 @@ const filteredMerchants = await waveClient.merchants.listMerchants({
 const merchant = await waveClient.merchants.getMerchant('merchant_123');
 ```
 
-### Webhooks API
+### Webhooks API (⚠️ Deprecated)
+
+> **Warning:** The Webhooks API is deprecated and will be removed in a future version. Please migrate to alternative notification methods.
 
 ```typescript
 // List webhooks

@@ -26,7 +26,10 @@ export class WaveClient {
   /** Aggregated Merchants API */
   public readonly merchants: MerchantsApi;
 
-  /** Webhooks API */
+  /** 
+   * Webhooks API 
+   * @deprecated This API is being deprecated and will be removed in a future version
+   */
   public readonly webhooks: WebhooksApi;
 
   /**

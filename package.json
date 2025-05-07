@@ -18,7 +18,10 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "docs": "typedoc --out docs src",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "publish:patch": "npm version patch && git push --follow-tags && npm publish",
+    "publish:minor": "npm version minor && git push --follow-tags && npm publish",
+    "publish:major": "npm version major && git push --follow-tags && npm publish"
   },
   "keywords": [
     "wave",
@@ -28,7 +31,7 @@
     "payment",
     "africa"
   ],
-  "author": "",
+  "author": "Florent Azonnoudo",
   "license": "MIT",
   "repository": {
     "type": "git",
