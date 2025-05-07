@@ -29,7 +29,8 @@
     "client",
     "fintech",
     "payment",
-    "africa"
+    "africa",
+    "sdk"
   ],
   "author": "Florent Azonnoudo",
   "license": "MIT",
