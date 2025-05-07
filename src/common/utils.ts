@@ -29,8 +29,25 @@ export function formatAmount(amount: number | string, currency: string): string 
     throw new Error(`Invalid amount format: ${amount}`);
   }
 
-  // Return the amount as a string (API expects string values for amounts)
-  return amountStr;
+  // Parse the amount
+  const parsedAmount = parseFloat(amountStr);
+
+  // Format based on currency
+  switch (currency) {
+    case 'XOF': // CFA Franc BCEAO - no decimal places
+    case 'JPY': // Japanese Yen - no decimal places
+    case 'KRW': // South Korean Won - no decimal places
+      return Math.round(parsedAmount).toString();
+
+    case 'BHD': // Bahraini Dinar - 3 decimal places
+    case 'IQD': // Iraqi Dinar - 3 decimal places
+    case 'KWD': // Kuwaiti Dinar - 3 decimal places
+    case 'OMR': // Omani Rial - 3 decimal places
+      return parsedAmount.toFixed(3);
+
+    default: // Most currencies use 2 decimal places (USD, EUR, etc.)
+      return parsedAmount.toFixed(2);
+  }
 }
 
 /**

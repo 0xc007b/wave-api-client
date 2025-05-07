@@ -32,7 +32,7 @@ describe('Utils', () => {
   describe('formatAmount', () => {
     it('should convert a number to string', () => {
       expect(formatAmount(1000, 'XOF')).toBe('1000');
-      expect(formatAmount(1000.5, 'GHS')).toBe('1000.5');
+      expect(formatAmount(1000.5, 'GHS')).toBe('1000.50');
     });
 
     it('should return string amounts as-is', () => {

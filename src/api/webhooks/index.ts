@@ -25,7 +25,7 @@ export class WebhooksApi {
 
   /**
    * Lists webhooks
-   * 
+   *
    * @deprecated This method is being deprecated and will be removed in a future version
    * @param params Optional parameters for filtering webhooks
    * @returns A paginated list of webhooks
