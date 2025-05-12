@@ -16,7 +16,6 @@ export const HEADERS = {
   AUTHORIZATION: 'Authorization',
   CONTENT_TYPE: 'Content-Type',
   IDEMPOTENCY_KEY: 'Idempotency-Key',
-  WAVE_SIGNATURE: 'Wave-Signature',
 };
 
 /** Content types */
@@ -40,7 +39,4 @@ export const ENDPOINTS = {
 
   // Aggregated Merchants API
   AGGREGATED_MERCHANTS: `/${API_VERSION}/aggregated_merchants`,
-
-  // Webhooks
-  WEBHOOKS: `/${API_VERSION}/webhooks`,
 };

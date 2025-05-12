@@ -57,7 +57,6 @@ The client provides access to the following Wave APIs:
 - Checkout API
 - Payout API
 - Merchants API
-- Webhooks API ⚠️ (Deprecated and will be removed in a future version)
 
 ### Balance & Reconciliation API
 

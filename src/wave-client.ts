@@ -5,7 +5,6 @@ import { BalanceApi } from './api/balance';
 import { CheckoutApi } from './api/checkout';
 import { PayoutApi } from './api/payout';
 import { MerchantsApi } from './api/merchants';
-import { WebhooksApi } from './api/webhooks';
 
 /**
  * Main Wave API client
@@ -27,12 +26,6 @@ export class WaveClient {
   public readonly merchants: MerchantsApi;
 
   /**
-   * Webhooks API
-   * @deprecated This API is being deprecated and will be removed in a future version
-   */
-  public readonly webhooks: WebhooksApi;
-
-  /**
    * Creates a new Wave API client instance
    * @param config Client configuration
    */
@@ -45,6 +38,5 @@ export class WaveClient {
     this.checkout = new CheckoutApi(this.httpClient);
     this.payout = new PayoutApi(this.httpClient);
     this.merchants = new MerchantsApi(this.httpClient);
-    this.webhooks = new WebhooksApi(this.httpClient);
   }
 }

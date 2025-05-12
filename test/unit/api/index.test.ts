@@ -6,6 +6,5 @@ describe('API Index', () => {
     expect(api.CheckoutApi).toBeDefined();
     expect(api.PayoutApi).toBeDefined();
     expect(api.MerchantsApi).toBeDefined();
-    expect(api.WebhooksApi).toBeDefined();
   });
 });
